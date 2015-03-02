@@ -36,7 +36,7 @@ $(function () {
         dataType: "json",
         success: function (data) {
             $(data).each(function (i, item) {
-                $('#devices').append('<li>' + item.Name + '</li>');
+                $('#devices').append('<li>' + item.Name + " " + item.Id + '</li>');
   
             });
         },
@@ -73,9 +73,12 @@ $('#deleteDevice').click(function () {
             var str = datastring.split("&");
             var id = (str[0].split("Id="));
             var name = str[1].split("Name=");
-            console.log(id[1]);
-            console.log(name[1]);
-            document.getElementById(name[1]).remove();
+            
+            var count = document.getElementById("devices").getElementsByTagName("li");
+            console.log(count.length);
+            $(count).each(function (i, item) {
+                    console.log(item.text());
+            });
         },
         error: function () {
             alert('error handling here');
